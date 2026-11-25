@@ -7,8 +7,12 @@ float ballRadius = 25;
 
 float player1Y;
 float player1X;
-float player1W = 20;
-float player1H = 100;
+
+float playerW = 20;
+float playerH = 100;
+
+float player2X;
+float player2Y;
 
 boolean inPausa = false;
 boolean wPremuto = false;
@@ -24,6 +28,8 @@ void setup(){
     
     player1X = 50;
     player1Y = 50;
+    player2X = width - 50;
+    player2Y = 50;
     
     noStroke();
 }
@@ -46,7 +52,8 @@ void draw(){
     velY = -velY;
   }
   
-  if ( posX > player1X && posX < player1X + player1W  && posY > player1Y && posY < player1Y + player1H ){
+  if ( posX > player1X - ballRadius && posX < player1X + playerW + ballRadius  
+          && posY > player1Y - ballRadius && posY < player1Y + playerH + ballRadius ){
      velX = abs(velX);
   }
   
@@ -55,7 +62,8 @@ void draw(){
   if ( sPremuto )
     player1Y = player1Y+6;
     
-  rect(player1X,player1Y,player1W,player1H);
+  rect(player1X,player1Y,playerW,playerH);
+  rect(player2X,player2Y,playerW,playerH);
 
 }
 void keyPressed(){
