@@ -14,6 +14,9 @@ float playerH = 100;
 float player2X;
 float player2Y;
 
+int score1, score2;
+int maxScore = 5;
+
 boolean inPausa = false;
 boolean wPremuto = false;
 boolean sPremuto = false;
@@ -32,6 +35,9 @@ void setup() {
   player1Y = 50;
   player2X = width - 50;
   player2Y = 50;
+  
+  score1 = 0;
+  score2 = 0;
 
   noStroke();
 }
@@ -46,11 +52,31 @@ void draw() {
     posY = posY + velY;
   }
 
-  if ( posX > width - ballRadius || posX < ballRadius ) {
+  if ( posX > width - ballRadius  ) {
     //velX = -velX;
-    println("ho fatto gol");
+    println("ha fatto gol player 1");
+    score1++;
+    println(score1 + " - " + score2);
+    if ( score1 >= maxScore ){
+      println("score1 win");
+      score1 = 0;
+      score2 = 0; 
+    }
     posX = width/2;
     posY= height/2;
+  }
+  else if ( posX < ballRadius ){
+    println("ha fatto gol player 2");
+    score2++;
+    println(score1 + " - " + score2);
+    if ( score2 >= maxScore ){
+      println("score2 win");
+      score1 = 0;
+      score2 = 0; 
+    }
+    posX = width/2;
+    posY= height/2;
+    
   }
 
   if ( posY > height - ballRadius || posY < ballRadius ) {
